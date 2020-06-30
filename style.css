@@ -1,0 +1,9 @@
+.centralizar {
+    width: 940px;
+    height: 940px;
+    margin: auto;
+}
+
+canvas {
+    border: 1px solid #000000;
+}
