@@ -1,8 +1,7 @@
 elemLeft = canvas.offsetLeft + canvas.clientLeft,
 elemTop = canvas.offsetTop + canvas.clientTop,
 
-addEventListener('click', getElement, false)
-addEventListener('mousemove', getMousePosition, false)
+addEventListener('mousemove', getElement, false)
 
 function getElement() {
     casaIdReturn = null
@@ -29,13 +28,6 @@ function getElement() {
         }
     }
 
-    selecionarPeca(pecaIdReturn, casaIdReturn)
-    console.log(casaIdReturn, pecaIdReturn)
-}
-
-function getMousePosition() {
-    x = event.pageX - elemLeft
-    y = event.pageY - elemTop
-
-    moverPeca(x, y)
+    if(casaIdReturn != null)
+        selecionarPeca(casaIdReturn) 
 }
