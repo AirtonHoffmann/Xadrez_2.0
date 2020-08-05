@@ -10,13 +10,13 @@ reiBranco       = 6       reiPreto      = 12
 const canvas = document.getElementById('screen')
 const context = canvas.getContext('2d')
 
-preloadImagem = new Array()
-for(i = 0; i < 13; i++){
+var preloadImagem = new Array()
+for(let i = 0; i < 13; i++){
     preloadImagem[i] = new Image()
     preloadImagem[i].src = `imagens/${i}.png`
 }
 
-const tabuleiro = {
+var tabuleiro = {
     fundo: {
         'imagem': preloadImagem[0],
         'x': 0,
@@ -65,9 +65,9 @@ const tabuleiro = {
     },
 }
 
-pX = 70
-pY = 70
-for(i = 1; i < 65; i++){
+var pX = 70
+var pY = 70
+for(let i = 1; i < 65; i++){
     tabuleiro.casas[`c${i}`] = {
         color: tabuleiro.corCasa,
         x: pX,
@@ -88,16 +88,16 @@ function renderScreen() {
 
     context.drawImage(tabuleiro.fundo.imagem, tabuleiro.fundo.x, tabuleiro.fundo.y)
 
-    for(const casaId in tabuleiro.casas){
-        const casa = tabuleiro.casas[casaId]
+    for(let casaId in tabuleiro.casas){
+        let casa = tabuleiro.casas[casaId]
 
         context.strokeStyle = casa.color
         context.lineWidth = "2"
         context.strokeRect(casa.x, casa.y, tabuleiro.casaLargura, tabuleiro.casaAltura)
     }
 
-    for(const pecaId in tabuleiro.pecas){
-        const peca = tabuleiro.pecas[pecaId]
+    for(let pecaId in tabuleiro.pecas){
+        let peca = tabuleiro.pecas[pecaId]
         context.drawImage(peca.imagem, peca.x, peca.y)
     }
 
