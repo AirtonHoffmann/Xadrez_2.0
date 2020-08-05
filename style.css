@@ -1,5 +1,6 @@
 .body {
-    background-color: #FFE4E1;
+    background-image: url("imagens/13.jpg");
+    background-size: cover;
 }
 
 .centralizar {

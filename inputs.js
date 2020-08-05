@@ -1,9 +1,12 @@
-var elemLeft = canvas.offsetLeft + canvas.clientLeft
-var elemTop = canvas.offsetTop + canvas.clientTop
+var elemLeft
+var elemTop
 
 addEventListener('mousemove', getElement, false)
 
 function getElement() {
+    elemLeft = canvas.offsetLeft + canvas.clientLeft
+    velemTop = canvas.offsetTop + canvas.clientTop
+    
     let casaIdReturn = null
     let pecaIdReturn = null
 
