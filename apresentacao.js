@@ -21,36 +21,16 @@ var oqueRenderizar = "telaEscolha"
 var telaEscolha = {
     largura: 100,
     altura: 100,
-
-    fundo: {
-        imagem: preloadImagem[0],
-        x: 0,
-        y: 0,
-    },
-
+    fundo: {imagem: preloadImagem[0], x: 0, y: 0,},
     texto: {imagem: preloadImagem[14], x: 270, y: 370},
-
-    opcao01: {
-        color: '#ffffff00',
-        x: 370,
-        y: 470,
-    },
+    opcao01: {color: '#ffffff00', x: 370, y: 470,},
     peca01: {imagem: preloadImagem[5], x: 370, y: 470},
-
-    opcao02: {
-        color: '#ffffff00',
-        x: 470,
-        y: 470,
-    },
+    opcao02: {color: '#ffffff00', x: 470, y: 470,},
     peca02: {imagem: preloadImagem[11], x: 470, y: 470}
 }
 
 var tabuleiro = {
-    fundo: {
-        imagem: preloadImagem[0],
-        x: 0,
-        y: 0,
-    },
+    fundo: {imagem: preloadImagem[0], x: 0, y: 0,},
     casaAltura: 100,
     casaLargura: 100,
     corCasa: '#ffffff00',
@@ -63,11 +43,7 @@ var tabuleiro = {
 var pX = 70
 var pY = 70
 for(let i = 1; i < 65; i++){
-    tabuleiro.casas[`c${i}`] = {
-        color: tabuleiro.corCasa,
-        x: pX,
-        y: pY
-    }
+    tabuleiro.casas[`c${i}`] = {color: tabuleiro.corCasa, x: pX, y: pY}
     if(pX < 770){
         pX += 100
     }else{
@@ -101,7 +77,7 @@ function renderScreen() {
             break
 
         case "tabuleiro":
-            
+
             context.drawImage(tabuleiro.fundo.imagem, tabuleiro.fundo.x, tabuleiro.fundo.y)
 
             for(let casaId in tabuleiro.casas){

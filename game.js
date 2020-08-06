@@ -26,7 +26,7 @@ function maquinaDeEstado(casaId, pecaid, tipo) {
     }
 }
 
-function mouseOverTabuleiro (casaId, pecaid,) {
+function mouseOverTabuleiro (casaId, pecaid) {
     if(casaId != "none"){
         if(pecaid != "none"){
             if(pecaid[0] == state.lado){
@@ -50,11 +50,13 @@ function mouseOverTabuleiro (casaId, pecaid,) {
                     tabuleiro.casas[state.casaOver].color = '#ff261b'
                 }
             }
-        }else{
+        }else if(state.casaOver != "none"){
             tabuleiro.casas[state.casaOver].color = '#ffffff00'
+            state.casaOver = "none"
         }
-    }else{
+    }else if(state.casaOver != "none"){
         tabuleiro.casas[state.casaOver].color = '#ffffff00'
+        state.casaOver = "none"
     }
 }
 
@@ -87,22 +89,14 @@ function mouseClickOption (casaId) {
         oqueRenderizar = "tabuleiro"
 
         for(let i = 0; i < 32; i++){
-            tabuleiro.pecas[indices01[i]] = {
-                imagem: preloadImagem[codeImage01[i]],
-                x: x[i],
-                y: y[i]
-            }
+            tabuleiro.pecas[indices01[i]] = {imagem: preloadImagem[codeImage01[i]], x: x[i], y: y[i]}
         } 
     }else if(casaId == "opcao02"){
         state.lado = "P"
         oqueRenderizar = "tabuleiro"
 
         for(let i = 0; i < 32; i++){
-            tabuleiro.pecas[indices02[i]] = {
-                imagem: preloadImagem[codeImage02[i]],
-                x: x[i],
-                y: y[i]
-            }
+            tabuleiro.pecas[indices02[i]] = {imagem: preloadImagem[codeImage02[i]], x: x[i], y: y[i]}
         }   
     }
 }
