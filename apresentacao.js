@@ -11,16 +11,45 @@ const canvas = document.getElementById('screen')
 const context = canvas.getContext('2d')
 
 var preloadImagem = new Array()
-for(let i = 0; i < 13; i++){
+for(let i = 0; i < 15; i++){
     preloadImagem[i] = new Image()
     preloadImagem[i].src = `imagens/${i}.png`
 }
 
+var oqueRenderizar = "telaEscolha"
+
+var telaEscolha = {
+    largura: 100,
+    altura: 100,
+
+    fundo: {
+        imagem: preloadImagem[0],
+        x: 0,
+        y: 0,
+    },
+
+    texto: {imagem: preloadImagem[14], x: 270, y: 370},
+
+    opcao01: {
+        color: '#ffffff00',
+        x: 370,
+        y: 470,
+    },
+    peca01: {imagem: preloadImagem[5], x: 370, y: 470},
+
+    opcao02: {
+        color: '#ffffff00',
+        x: 470,
+        y: 470,
+    },
+    peca02: {imagem: preloadImagem[11], x: 470, y: 470}
+}
+
 var tabuleiro = {
     fundo: {
-        'imagem': preloadImagem[0],
-        'x': 0,
-        'y': 0,
+        imagem: preloadImagem[0],
+        x: 0,
+        y: 0,
     },
     casaAltura: 100,
     casaLargura: 100,
@@ -28,41 +57,7 @@ var tabuleiro = {
     casas: {},
     pecaAltura: 100,
     pecaLargura: 100,
-    pecas: {
-        'peaoBranco01': {imagem: preloadImagem[1], x: 70, y: 670},
-        'peaoBranco02': {imagem: preloadImagem[1], x: 170, y: 670},
-        'peaoBranco03': {imagem: preloadImagem[1], x: 270, y: 670},
-        'peaoBranco04': {imagem: preloadImagem[1], x: 370, y: 670},
-        'peaoBranco05': {imagem: preloadImagem[1], x: 470, y: 670},
-        'peaoBranco06': {imagem: preloadImagem[1], x: 570, y: 670},
-        'peaoBranco07': {imagem: preloadImagem[1], x: 670, y: 670},
-        'peaoBranco08': {imagem: preloadImagem[1], x: 770, y: 670},
-        'torreBranca01': {imagem: preloadImagem[2], x: 70, y: 770},
-        'torreBranca02': {imagem: preloadImagem[2], x: 770, y: 770},
-        'cavaloBranco01': {imagem: preloadImagem[3], x: 170, y: 770},
-        'cavaloBranco02': {imagem: preloadImagem[3], x: 670, y: 770},
-        'bispoBranco01': {imagem: preloadImagem[4], x: 270, y: 770},
-        'bispoBranco02': {imagem: preloadImagem[4], x: 570, y: 770},
-        'rainhaBranca': {imagem: preloadImagem[5], x: 370, y: 770},
-        'reiBranc0': {imagem: preloadImagem[6], x: 470, y: 770},
-
-        'peaoPreto01': {imagem: preloadImagem[7], x: 70, y: 170},
-        'peaoPreto02': {imagem: preloadImagem[7], x: 170, y: 170},
-        'peaoPreto03': {imagem: preloadImagem[7], x: 270, y: 170},
-        'peaoPreto04': {imagem: preloadImagem[7], x: 370, y: 170},
-        'peaoPreto05': {imagem: preloadImagem[7], x: 470, y: 170},
-        'peaoPreto06': {imagem: preloadImagem[7], x: 570, y: 170},
-        'peaoPreto07': {imagem: preloadImagem[7], x: 670, y: 170},
-        'peaoPreto08': {imagem: preloadImagem[7], x: 770, y: 170},
-        'torrePreta01': {imagem: preloadImagem[8], x: 70, y: 70},
-        'torrePreta02': {imagem: preloadImagem[8], x: 770, y: 70},
-        'cavaloPreto01': {imagem: preloadImagem[9], x: 170, y: 70},
-        'cavaloPreto02': {imagem: preloadImagem[9], x: 670, y: 70},
-        'bispoPreto01': {imagem: preloadImagem[10], x: 270, y: 70},
-        'bispoPreto02': {imagem: preloadImagem[10], x: 570, y: 70},
-        'rainhaPreta': {imagem: preloadImagem[11], x: 370, y: 70},
-        'reiPreto': {imagem: preloadImagem[12], x: 470, y: 70},
-    },
+    pecas: {},
 }
 
 var pX = 70
@@ -86,19 +81,41 @@ renderScreen()
 function renderScreen() {
     context.clearRect(0, 0, 940, 940)
 
-    context.drawImage(tabuleiro.fundo.imagem, tabuleiro.fundo.x, tabuleiro.fundo.y)
+    switch (oqueRenderizar){
+        case "telaEscolha":
 
-    for(let casaId in tabuleiro.casas){
-        let casa = tabuleiro.casas[casaId]
+            context.drawImage(telaEscolha.fundo.imagem, telaEscolha.fundo.x, telaEscolha.fundo.y)
 
-        context.strokeStyle = casa.color
-        context.lineWidth = "2"
-        context.strokeRect(casa.x, casa.y, tabuleiro.casaLargura, tabuleiro.casaAltura)
-    }
+            context.fillStyle = "#00000080"
+            context.fillRect(0, 0, 940, 940)
 
-    for(let pecaId in tabuleiro.pecas){
-        let peca = tabuleiro.pecas[pecaId]
-        context.drawImage(peca.imagem, peca.x, peca.y)
+            context.drawImage(telaEscolha.texto.imagem, telaEscolha.texto.x, telaEscolha.texto.y)
+
+            context.fillStyle = telaEscolha.opcao01.color
+            context.fillRect(telaEscolha.opcao01.x, telaEscolha.opcao01.y, telaEscolha.largura, telaEscolha.altura)
+            context.drawImage(telaEscolha.peca01.imagem, telaEscolha.peca01.x, telaEscolha.peca01.y)
+
+            context.fillStyle = telaEscolha.opcao02.color
+            context.fillRect(telaEscolha.opcao02.x, telaEscolha.opcao02.y, telaEscolha.largura, telaEscolha.altura)
+            context.drawImage(telaEscolha.peca02.imagem, telaEscolha.peca02.x, telaEscolha.peca02.y)
+            break
+
+        case "tabuleiro":
+            
+            context.drawImage(tabuleiro.fundo.imagem, tabuleiro.fundo.x, tabuleiro.fundo.y)
+
+            for(let casaId in tabuleiro.casas){
+                let casa = tabuleiro.casas[casaId]
+
+                context.strokeStyle = casa.color
+                context.lineWidth = "2"
+                context.strokeRect(casa.x, casa.y, tabuleiro.casaLargura, tabuleiro.casaAltura)
+            }
+
+            for(let pecaId in tabuleiro.pecas){
+                let peca = tabuleiro.pecas[pecaId]
+                context.drawImage(peca.imagem, peca.x, peca.y)
+            }
     }
 
     requestAnimationFrame(renderScreen)
