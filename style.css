@@ -1,6 +1,7 @@
 .body {
     background-image: url("imagens/13.png");
     background-size: cover;
+    cursor: default;
 }
 
 .centralizar {

@@ -33,7 +33,8 @@ var tabuleiro = {
     fundo: {imagem: preloadImagem[0], x: 0, y: 0,},
     casaAltura: 100,
     casaLargura: 100,
-    corCasa: '#ffffff00',
+    corContorno: '#ffffff00',
+    corFundo: '#ffffff00',
     casas: {},
     pecaAltura: 100,
     pecaLargura: 100,
@@ -42,13 +43,15 @@ var tabuleiro = {
 
 var pX = 70
 var pY = 70
-for(let i = 1; i < 65; i++){
-    tabuleiro.casas[`c${i}`] = {color: tabuleiro.corCasa, x: pX, y: pY}
-    if(pX < 770){
-        pX += 100
-    }else{
-        pX = 70
-        pY += 100
+for(let i = 7; i >= 0; i--){
+    for(let j = 0; j < 8; j++){
+        tabuleiro.casas[`${i}.${j}`] = {corC: tabuleiro.corContorno, corF: tabuleiro.corFundo, x: pX, y: pY}
+        if(pX < 770){
+            pX += 100
+        }else{
+            pX = 70
+            pY += 100
+        }
     }
 }
 
@@ -83,9 +86,12 @@ function renderScreen() {
             for(let casaId in tabuleiro.casas){
                 let casa = tabuleiro.casas[casaId]
 
-                context.strokeStyle = casa.color
+                context.strokeStyle = casa.corC
+                context.fillStyle = casa.corF
                 context.lineWidth = "2"
+                context.fillRect(casa.x, casa.y, tabuleiro.casaLargura, tabuleiro.casaAltura)
                 context.strokeRect(casa.x, casa.y, tabuleiro.casaLargura, tabuleiro.casaAltura)
+                
             }
 
             for(let pecaId in tabuleiro.pecas){

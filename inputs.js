@@ -1,10 +1,11 @@
-var tipo = ""
+//telaEscolha, tabuleiro e oqueRenderizar sao objetos que vem do arquivo apresentacao.js
+//maquinaDeEstado() e uma funcao que vem do arquivo game.js
 
 addEventListener('mousemove', getElement, false)
 addEventListener('mousemove', tipoMove, false)
 addEventListener('click', getElement, false)
 addEventListener('click', tipoClick, false)
-
+var tipo = ""
 function tipoMove() {tipo = "move"}
 function tipoClick() {tipo = "click"}
 
@@ -56,5 +57,6 @@ function getElement() {
             }
     }
 
+    //console.log(casaIdReturn)
     maquinaDeEstado(casaIdReturn, pecaIdReturn, tipo) 
 }
