@@ -15,6 +15,7 @@ function maquinaDeEstado(casaId, pecaid, tipo) {
                 mouseOverOption(casaId)
             }else if(casaId == "opcao01" || casaId == "opcao02"){
                 mouseClickOption(casaId)
+                setInicialInfo(casaId)
             }
 
             break
