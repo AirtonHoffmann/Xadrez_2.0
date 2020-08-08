@@ -1,12 +1,13 @@
 //telaEscolha, tabuleiro e oqueRenderizar sao objetos que vem do arquivo apresentacao.js
 
 var state = {
+    primeiroClick: false,
     minhaVez: false,
     lado: "Undefined",
     casaOver: "none"
 }
 
-function maquinaDeEstado(casaId, pecaid, tipo) {
+function maquinaDeEstado(casaId, pecaId, tipo) {
     
     switch (oqueRenderizar){
         case "telaEscolha":
@@ -23,16 +24,40 @@ function maquinaDeEstado(casaId, pecaid, tipo) {
         case "tabuleiro":
             
             if(tipo == "move"){
-                mouseOverTabuleiro(casaId, pecaid)   
+                mouseOverTabuleiro(casaId, pecaId)   
+            }else if(tipo == "click"){
+                if(pecaId[0] == state.lado || jogasValidas.indexOf(casaId)){
+                    if(state.primeiroClick == false){
+                        state.primeiroClick = true
+                        validarJogada(pecaId, casaId, state.lado)
+                        sinalizarJogadaValida()
+                    }else{
+                        state.primeiroClick = false
+                        desvalidarJogadas()
+                    }
+                }
             }
 
     }
 }
 
-function mouseOverTabuleiro (casaId, pecaid) {
+function sinalizarJogadaValida(){
+    for(let i = 0; i < jogasValidas.length; i++){
+        tabuleiro.casas[jogasValidas[i]].corF = '#ccff3380'
+    }
+}
+
+function desvalidarJogadas(){
+    for(let i = 0; i < jogasValidas.length; i++){
+        tabuleiro.casas[jogasValidas[i]].corF = '#ffffff00'
+    }
+    jogasValidas.length = 0
+}
+
+function mouseOverTabuleiro (casaId, pecaId) {
     if(casaId != "none"){
-        if(pecaid != "none"){
-            if(pecaid[0] == state.lado){
+        if(pecaId != "none"){
+            if(pecaId[0] == state.lado){
                 if(state.casaOver == "none"){
                     state.casaOver = casaId
                     tabuleiro.casas[state.casaOver].corC = '#ccff33'
