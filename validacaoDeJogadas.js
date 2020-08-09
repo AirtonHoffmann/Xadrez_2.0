@@ -117,13 +117,17 @@ function validarJogada(pecaId, casaId, lado) { //recebe a peca e sua posicao no 
                         }
                     }
                 }
-                peca = tbInfo[y+1][x+1]
-                if(peca[0] != "42" && peca[0] != lado){
-                    jogasValidas.push(`${y+1}.${x+1}`)
+                if(tbInfo[y+1][x+1] != undefined){
+                    peca = tbInfo[y+1][x+1]
+                    if(peca != "42" && peca[0] != pecaId[0]){
+                        jogasValidas.push(`${y+1}.${x+1}`)
+                    }
                 }
-                peca = tbInfo[y+1][x-1]
-                if(peca[0] != "42" && peca[0] != lado){
-                    jogasValidas.push(`${y+1}.${x-1}`)
+                if(tbInfo[y+1][x-1] != undefined){
+                    peca = tbInfo[y+1][x-1]
+                    if(peca != "42" && peca[0] != pecaId[0]){
+                        jogasValidas.push(`${y+1}.${x-1}`)
+                    }
                 }
             }else{
                 peca = tbInfo[y-1][x]
@@ -136,20 +140,25 @@ function validarJogada(pecaId, casaId, lado) { //recebe a peca e sua posicao no 
                         }
                     }
                 }
-                peca = tbInfo[y+1][x+1]
-                if(peca[0] != "42" && peca[0] == lado){
-                    jogasValidas.push(`${y-1}.${x+1}`)
-                }
-                peca = tbInfo[y+1][x-1]
-                if(peca[0] != "42" && peca[0] == lado){
-                    jogasValidas.push(`${y-1}.${x-1}`)
+                if(tbInfo[y-1][x+1] != undefined){
+                    peca = tbInfo[y-1][x+1]
+                    if(peca != "42" && peca[0] != pecaId[0]){
+                        jogasValidas.push(`${y-1}.${x+1}`)
+                    }
+                } 
+                if(tbInfo[y-1][x-1] != undefined){
+                    peca = tbInfo[y+1][x-1]
+                    if(peca != "42" && peca[0] != pecaId[0]){
+                        jogasValidas.push(`${y-1}.${x-1}`)
+                    }
                 }
             }
             
     }
+
 }
 
-function validar(coluna, linha, lado) { 
+function validar(coluna, linha) { 
     let retorno = true
     let peca 
 
@@ -157,10 +166,10 @@ function validar(coluna, linha, lado) {
         peca = tbInfo[coluna][linha]
         if (peca == "42") {
             jogasValidas.push(`${coluna}.${linha}`)
-        }else if (peca[0] != lado){
+        }else if (peca[0] != pecaId[0]){
             jogasValidas.push(`${coluna}.${linha}`)
             retorno = false
-        }else if (peca[0] == lado){
+        }else if (peca[0] == pecaId[0]){
             retorno = false
         }
     }else{
