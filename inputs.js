@@ -60,6 +60,6 @@ function pegarElement() {
             }
     }
 
-    //console.log(casaIdReturn)
+    //console.log(`${pecaIdReturn}, ${casaIdReturn}`)
     maquinaDeEstado(casaIdReturn, pecaIdReturn, tipo) 
 }

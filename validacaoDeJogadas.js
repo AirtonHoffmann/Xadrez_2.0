@@ -39,67 +39,67 @@ function validarJogada(pecaId, casaId, lado) { //recebe a peca e sua posicao no 
         case "t":
 
             jogasValidas.push(`${y}.${x}`)
-            for(let i = y; validar(i, x, lado); i++){}
-            for(let i = y; validar(i, x, lado); i--){}
-            for(let i = x; validar(y, i, lado); i++){}
-            for(let i = x; validar(y, i, lado); i--){}
+            for(let i = y; validar(i, x, pecaId); i++){}
+            for(let i = y; validar(i, x, pecaId); i--){}
+            for(let i = x; validar(y, i, pecaId); i++){}
+            for(let i = x; validar(y, i, pecaId); i--){}
 
             break
         case "c":
 
             jogasValidas.push(`${y}.${x}`)
-            if(validar(y+2, x+1, lado)){}
-            if(validar(y+2, x-1, lado)){}
-            if(validar(y+1, x-2, lado)){}
-            if(validar(y-1, x-2, lado)){}
-            if(validar(y-2, x+1, lado)){}
-            if(validar(y-2, x-1, lado)){}
-            if(validar(y+1, x+2, lado)){}
-            if(validar(y-1, x+2, lado)){}
+            if(validar(y+2, x+1, pecaId)){}
+            if(validar(y+2, x-1, pecaId)){}
+            if(validar(y+1, x-2, pecaId)){}
+            if(validar(y-1, x-2, pecaId)){}
+            if(validar(y-2, x+1, pecaId)){}
+            if(validar(y-2, x-1, pecaId)){}
+            if(validar(y+1, x+2, pecaId)){}
+            if(validar(y-1, x+2, pecaId)){}
 
             break
         case "b":
 
             jogasValidas.push(`${y}.${x}`)
             j = x
-            for(let i = y; validar(i, j++, lado); i++){}
+            for(let i = y; validar(i, j++, pecaId); i++){}
             j = x
-            for(let i = y; validar(i, j--, lado); i++){}
+            for(let i = y; validar(i, j--, pecaId); i++){}
             j = x
-            for(let i = y; validar(i, j++, lado); i--){}
+            for(let i = y; validar(i, j++, pecaId); i--){}
             j = x
-            for(let i = y; validar(i, j--, lado); i--){}
+            for(let i = y; validar(i, j--, pecaId); i--){}
 
             break
         case "a":
 
             jogasValidas.push(`${y}.${x}`)
             j = x
-            for(let i = y; validar(i, j++, lado); i++){}
+            for(let i = y; validar(i, j++, pecaId); i++){}
             j = x
-            for(let i = y; validar(i, j--, lado); i++){}
+            for(let i = y; validar(i, j--, pecaId); i++){}
             j = x
-            for(let i = y; validar(i, j++, lado); i--){}
+            for(let i = y; validar(i, j++, pecaId); i--){}
             j = x
-            for(let i = y; validar(i, j--, lado); i--){}
+            for(let i = y; validar(i, j--, pecaId); i--){}
 
-            for(let i = y; validar(i, x, lado); i++){}
-            for(let i = y; validar(i, x, lado); i--){}
-            for(let i = x; validar(y, i, lado); i++){}
-            for(let i = x; validar(y, i, lado); i--){}
+            for(let i = y; validar(i, x, pecaId); i++){}
+            for(let i = y; validar(i, x, pecaId); i--){}
+            for(let i = x; validar(y, i, pecaId); i++){}
+            for(let i = x; validar(y, i, pecaId); i--){}
 
             break
         case "o":
 
             jogasValidas.push(`${y}.${x}`)
-            validar(y+1, x, lado)
-            validar(y-1, x, lado)
-            validar(y, x+1, lado)
-            validar(y, x-1, lado)
-            validar(y+1, x+1, lado)
-            validar(y+1, x-1, lado)
-            validar(y-1, x+1, lado)
-            validar(y-1, x-1, lado)
+            validar(y+1, x, pecaId)
+            validar(y-1, x, pecaId)
+            validar(y, x+1, pecaId)
+            validar(y, x-1, pecaId)
+            validar(y+1, x+1, pecaId)
+            validar(y+1, x-1, pecaId)
+            validar(y-1, x+1, pecaId)
+            validar(y-1, x-1, pecaId)
 
             break
         case "p":
@@ -110,7 +110,7 @@ function validarJogada(pecaId, casaId, lado) { //recebe a peca e sua posicao no 
                 peca = tbInfo[y+1][x]
                 if(peca == "42"){
                     jogasValidas.push(`${y+1}.${x}`)
-                    if(y = 1){
+                    if(y == 1){
                         peca = tbInfo[y+2][x]
                         if(peca == "42"){
                             jogasValidas.push(`${y+2}.${x}`)
@@ -133,7 +133,7 @@ function validarJogada(pecaId, casaId, lado) { //recebe a peca e sua posicao no 
                 peca = tbInfo[y-1][x]
                 if(peca == "42"){
                     jogasValidas.push(`${y-1}.${x}`)
-                    if(y = 1){
+                    if(y == 6){
                         peca = tbInfo[y-2][x]
                         if(peca == "42"){
                             jogasValidas.push(`${y-2}.${x}`)
@@ -158,7 +158,7 @@ function validarJogada(pecaId, casaId, lado) { //recebe a peca e sua posicao no 
 
 }
 
-function validar(coluna, linha) { 
+function validar(coluna, linha, pecaId) { 
     let retorno = true
     let peca 
 

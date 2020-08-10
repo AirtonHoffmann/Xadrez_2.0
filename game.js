@@ -26,10 +26,18 @@ function maquinaDeEstado(casaId, pecaId, tipo) {
             if(tipo == "move"){
                 mouseOverTabuleiro(casaId, pecaId)   
             }else if(tipo == "click"){
-                if(state.primeiroClick == false && pecaId != "none" && pecaId[0] == state.lado){
+                /*if(state.primeiroClick == false && pecaId != "none" && pecaId[0] == state.lado){
                     state.primeiroClick = true
                     Promise.resolve(validarJogada(pecaId, casaId, state.lado))
                         .then(sinalizarJogadaValida())
+                }*/
+                if(state.primeiroClick == false && pecaId != "none"){
+                    state.primeiroClick = true
+                    Promise.resolve(validarJogada(pecaId, casaId, state.lado))
+                    .then(sinalizarJogadaValida())
+                }else if(state.primeiroClick == true){
+                    state.primeiroClick = false
+                    desvalidarJogadas()
                 }
             }
 

@@ -100,6 +100,5 @@ function renderScreen() {
             }
     }
 
-    //requestAnimationFrame(renderScreen)
-    setTimeout(renderScreen, 33)
+    requestAnimationFrame(renderScreen)
 }
