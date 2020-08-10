@@ -26,11 +26,11 @@ function pegarElement() {
         case "telaEscolha":
 
             if(y > telaEscolha.opcao01.y && y < telaEscolha.opcao01.y + telaEscolha.altura && x > telaEscolha.opcao01.x && x < telaEscolha.opcao01.x + telaEscolha.largura){
-                casaIdReturn = "opcao01"
+                pecaIdReturn = "opcao01"
             }else if(y > telaEscolha.opcao02.y && y < telaEscolha.opcao01.y + telaEscolha.altura && x > telaEscolha.opcao02.x && x < telaEscolha.opcao02.x + telaEscolha.largura){
-                casaIdReturn = "opcao02"
+                pecaIdReturn = "opcao02"
             }else{
-                casaIdReturn = "none"
+                pecaIdReturn = "none"
             }
             
             break

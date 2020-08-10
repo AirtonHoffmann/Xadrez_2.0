@@ -1,4 +1,5 @@
 /*
+**preloadImagem**
 peaoBranco      = 1       peaoPreto     = 7
 torreBranca     = 2       torrePreta    = 8
 cavaloBranco    = 3       cavaloPreto   = 9
@@ -23,10 +24,8 @@ var telaEscolha = {
     altura: 100,
     fundo: {imagem: preloadImagem[0], x: 0, y: 0,},
     texto: {imagem: preloadImagem[14], x: 270, y: 370},
-    opcao01: {color: '#ffffff00', x: 370, y: 470,},
-    peca01: {imagem: preloadImagem[5], x: 370, y: 470},
-    opcao02: {color: '#ffffff00', x: 470, y: 470,},
-    peca02: {imagem: preloadImagem[11], x: 470, y: 470}
+    opcao01: {imagem: preloadImagem[5], sx: 0, sy: 0, sWidth: 100, sHeight: 100, x: 370, y: 470},
+    opcao02: {imagem: preloadImagem[11], sx: 0, sy: 0, sWidth: 100, sHeight: 100, x: 470, y: 470}
 }
 
 var tabuleiro = {
@@ -64,19 +63,12 @@ function renderScreen() {
         case "telaEscolha":
 
             context.drawImage(telaEscolha.fundo.imagem, telaEscolha.fundo.x, telaEscolha.fundo.y)
-
             context.fillStyle = "#00000080"
             context.fillRect(0, 0, 940, 940)
-
             context.drawImage(telaEscolha.texto.imagem, telaEscolha.texto.x, telaEscolha.texto.y)
+            context.drawImage(telaEscolha.opcao01.imagem, telaEscolha.opcao01.sx, telaEscolha.opcao01.sy, telaEscolha.opcao01.sWidth, telaEscolha.opcao01.sHeight, telaEscolha.opcao01.x, telaEscolha.opcao01.y, telaEscolha.largura, telaEscolha.altura)
+            context.drawImage(telaEscolha.opcao02.imagem, telaEscolha.opcao02.sx, telaEscolha.opcao02.sy, telaEscolha.opcao02.sWidth, telaEscolha.opcao02.sHeight, telaEscolha.opcao02.x, telaEscolha.opcao02.y, telaEscolha.largura, telaEscolha.altura)
 
-            context.fillStyle = telaEscolha.opcao01.color
-            context.fillRect(telaEscolha.opcao01.x, telaEscolha.opcao01.y, telaEscolha.largura, telaEscolha.altura)
-            context.drawImage(telaEscolha.peca01.imagem, telaEscolha.peca01.x, telaEscolha.peca01.y)
-
-            context.fillStyle = telaEscolha.opcao02.color
-            context.fillRect(telaEscolha.opcao02.x, telaEscolha.opcao02.y, telaEscolha.largura, telaEscolha.altura)
-            context.drawImage(telaEscolha.peca02.imagem, telaEscolha.peca02.x, telaEscolha.peca02.y)
             break
 
         case "tabuleiro":
@@ -85,18 +77,16 @@ function renderScreen() {
 
             for(let casaId in tabuleiro.casas){
                 let casa = tabuleiro.casas[casaId]
-
                 context.strokeStyle = casa.corC
                 context.fillStyle = casa.corF
                 context.lineWidth = "2"
                 context.fillRect(casa.x, casa.y, tabuleiro.casaLargura, tabuleiro.casaAltura)
-                context.strokeRect(casa.x, casa.y, tabuleiro.casaLargura, tabuleiro.casaAltura)
-                
+                context.strokeRect(casa.x, casa.y, tabuleiro.casaLargura, tabuleiro.casaAltura)    
             }
-
+            
             for(let pecaId in tabuleiro.pecas){
                 let peca = tabuleiro.pecas[pecaId]
-                context.drawImage(peca.imagem, peca.x, peca.y)
+                context.drawImage(peca.imagem, peca.sx, peca.sy, peca.sWidth, peca.sHeight, peca.x, peca.y, tabuleiro.pecaLargura, tabuleiro.pecaAltura)
             }
     }
 
